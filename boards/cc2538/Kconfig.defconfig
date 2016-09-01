@@ -1,0 +1,7 @@
+
+if BOARD_CC2538
+
+config BOARD
+	default cc2538
+
+endif # BOARD_cc2538

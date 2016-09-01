@@ -1,0 +1,4 @@
+
+config BOARD_CC2538
+	bool "CC2538"
+	depends on SOC_TI_CC2538

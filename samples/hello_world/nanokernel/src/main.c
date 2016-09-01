@@ -24,9 +24,37 @@
  * Nanokernel version of hello world demo
  */
 
+void test_with_leds(void)
+{
+#define HWREG(x)  				(*((volatile uint32_t *)(x)))
+		
+#define LED_ADDR_DATA 			0x400DB000
+#define LED_ADDR_DIR			0x400DB400
+#define LED_ADDR_AFSEL			0x400DB420
+		
+#define IOC_ADDR_PC0_OVER       0x400D40C0  
+#define IOC_ADDR_PC1_OVER       0x400D40C4  
+#define IOC_ADDR_PC2_OVER       0x400D40C8  
+#define IOC_ADDR_PC3_OVER       0x400D40CC  
+		
+#define IOC_OVERRIDE_DIS  		0x00000000    
+#define LED_PIN_MASK			0x0000000f
+		
+		
+	HWREG(LED_ADDR_DIR)   = LED_PIN_MASK;
+	HWREG(LED_ADDR_AFSEL) = 0;
+		
+	HWREG(IOC_ADDR_PC0_OVER) = IOC_OVERRIDE_DIS;
+	HWREG(IOC_ADDR_PC1_OVER) = IOC_OVERRIDE_DIS;
+	HWREG(IOC_ADDR_PC2_OVER) = IOC_OVERRIDE_DIS;
+	HWREG(IOC_ADDR_PC3_OVER) = IOC_OVERRIDE_DIS;
+	HWREG(LED_ADDR_DATA + (LED_PIN_MASK << 2)) = 4;
+
+}
 
 void main(void)
 {
+	test_with_leds();
 	SYS_LOG_INF("Hello World! %s", CONFIG_ARCH);
 }
 

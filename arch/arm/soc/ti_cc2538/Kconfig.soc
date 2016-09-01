@@ -1,0 +1,5 @@
+
+config SOC_TI_CC2538
+	bool "TI CC2538 Platform"
+	select CPU_CORTEX_M
+	select CPU_CORTEX_M3
