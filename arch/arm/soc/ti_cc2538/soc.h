@@ -16,55 +16,50 @@
  */
 
 /**
- * @file SoC configuration macros for the Atmel SAM3 family processors.
+ * @file SoC configuration macros for the TI CC2538 processors.
  */
 
-#ifndef _ATMEL_SAM3_SOC_H_
-#define _ATMEL_SAM3_SOC_H_
+#ifndef _TI_CC2538_SOC_H_
+#define _TI_CC2538_SOC_H_
 
-/* IRQ numbers (from section 9.1, Peripheral Identifiers). */
-#define IRQ_SUPC	0	/* Supply Controller                    */
-#define IRQ_RSTC	1	/* Reset Controller                     */
-#define IRQ_RTC		2	/* Real-time Clock                      */
-#define IRQ_RTT		3	/* Real-time Timer                      */
-#define IRQ_WDG		4	/* Watchdog Timer                       */
-#define IRQ_PMC		5	/* Power Management Controller          */
-#define IRQ_EEFC0	6	/* Enhanced Embedded Flash Controller 0 */
-#define IRQ_EEFC1	7	/* Enhanced Embedded Flash Controller 1 */
-#define IRQ_UART	8	/* UART                                 */
-#define IRQ_PIOA	11	/* Parallel IO Controller A             */
-#define IRQ_PIOB	12	/* Parallel IO Controller B             */
-#define IRQ_PIOC	13	/* Parallel IO Controller C             */
-#define IRQ_PIOD	14	/* Parallel IO Controller D             */
-#define IRQ_PIOE	15	/* Parallel IO Controller E             */
-#define IRQ_PIOF	16	/* Parallel IO Controller F             */
-#define IRQ_USART0	17	/* USART #0                             */
-#define IRQ_USART1	18	/* USART #1                             */
-#define IRQ_USART2	19	/* USART #2                             */
-#define IRQ_USART3	20	/* USART #3                             */
-#define IRQ_HSMCI	21	/* High Speed Multimedia Card Interface */
-#define IRQ_TWI0	22	/* Two-wire Interface #0                */
-#define IRQ_TWI1	23	/* Two-wire Interface #1                */ #define IRQ_SPI0	24	/* SPI #0                               */ #define IRQ_SPI1	25	/* SPI #1                               */
-#define IRQ_SSC		26	/* Synchronous Serial Controller        */
-#define IRQ_TC0		27	/* Timer Counter Channel #0             */
-#define IRQ_TC1		28	/* Timer Counter Channel #1             */
-#define IRQ_TC2		29	/* Timer Counter Channel #2             */
-#define IRQ_TC3		30	/* Timer Counter Channel #3             */
-#define IRQ_TC4		31	/* Timer Counter Channel #4             */
-#define IRQ_TC5		32	/* Timer Counter Channel #5             */
-#define IRQ_TC6		33	/* Timer Counter Channel #6             */
-#define IRQ_TC7		34	/* Timer Counter Channel #7             */
-#define IRQ_TC8		35	/* Timer Counter Channel #8             */
-#define IRQ_PWM		36	/* PWM Controller                       */
-#define IRQ_ADC		37	/* ADC Controller                       */
-#define IRQ_DACC	38	/* DAC Controller                       */
-#define IRQ_DMAC	39	/* DMA Controller                       */
-#define IRQ_UOTGHS	40	/* USB OTG High Speed                   */
-#define IRQ_TRNG	41	/* True Random Number Generator         */
-#define IRQ_EMAC	42	/* Ehternet MAC                         */
-#define IRQ_CAN0	43	/* CAN Controller #0                    */
-#define IRQ_CAN1	44	/* CAN Controller #1                    */
-
+/* IRQ numbers (from table-5.2, section 5.1.2, Exception Types). 	*/
+#define IRQ_GPIO_A			0	/* GPIO Port A  			*/
+#define IRQ_GPIO_B			1	/* GPIO Port B  			*/
+#define IRQ_GPIO_C			2	/* GPIO Port C  			*/
+#define IRQ_GPIO_D			3	/* GPIO Port D  			*/
+#define IRQ_UART0			5	/* Uart0   				*/
+#define IRQ_UART1			6	/* Uart1 					*/
+#define IRQ_SSI0			7	/* SSI0 					*/
+#define IRQ_I2C				8	/* I2C   					*/
+#define IRQ_ADC 			14	/* ADC  					*/
+#define IRQ_WDT				18	/* Watchdog Timer   		*/
+#define IRQ_GPT0A			19	/* GPTimer 0A      			*/
+#define IRQ_GPT0B			20	/* GPTimer 0B      			*/
+#define IRQ_GPT1A			21	/* GPTimer 1A      			*/
+#define IRQ_GPT1B			22	/* GPTimer 1B      			*/
+#define IRQ_GPT2A			23	/* GPTimer 2A      			*/
+#define IRQ_GPT2B			24	/* GPTimer 2B      			*/
+#define IRQ_ANALOG			25	/* Analog comparator  		*/
+#define IRQ_RF_TXRX			26	/* RF TX/RX(Alternate)		*/
+#define IRQ_RF_ERR 			27	/* RF Error(Alternate) 		*/
+#define IRQ_SYSCTL			28	/* System Control 			*/
+#define IRQ_FLASH			29	/* Flash memory control	*/
+#define IRQ_AES_ALT			30	/* ATS(Alternate) 			*/
+#define IRQ_PKA_ALT			31	/* PKA(Alterante) 			*/
+#define IRQ_SM_ALT			32	/* SM Timer(Alternate)		*/
+#define IRQ_MAC_ALT			33	/* MAC Timer(Alternate)	*/
+#define IRQ_SSI1			34	/* SSI1  					*/
+#define IRQ_GPT3A			35	/* GPTimer 3A     			*/
+#define IRQ_GPT3B			36	/* GPTimer 3B      			*/
+#define	IRQ_DMA_SW			46	/* DMA Software 			*/
+#define IRQ_DMA_ERR			47 	/* DMA Error  				*/
+#define IRQ_USB 			140	/* USB 					*/
+#define IRQ_RF_CORE_RXTX	141	/* RF Core Rx/Tx 			*/
+#define IRQ_RF_CORE_Err		142	/* RF Core Error 			*/
+#define IRQ_AES				143	/* AES 					*/
+#define IRQ_PKA 			144	/* PKA 					*/
+#define IRQ_SM 				145	/* SM Timer 				*/
+#define IRQ_MAC 			146	/* MAC Timer 				*/
 
 /*---------------------------------------------------------------------------*/
 /** \name SYS_CTRL_CLOCK_CTRL register bit masks
@@ -234,9 +229,46 @@
 #define SYS_CTRL_PMCTL_PM0                  0x00000000  /**< PM0 */
 /** @} */
 
+#define UART0_ADDR			0x4000C000
+#define UART1_ADDR			0x4000D000
+#define SYS_CTRL_ADDR 		0x400D2000
+#define IOC_ADDR			0x400D4000
+#define GPIO_A_ADDR			0x400D9000
+#define GPIO_B_ADDR			0x400DA000
+#define GPIO_C_ADDR			0x400DB000
+#define GPIO_D_ADDR			0x400DC000
 
+#define IOC_PXX_SEL_UART0_TXD       0x00000000
+#define IOC_PXX_SEL_UART1_RTS       0x00000001
+#define IOC_PXX_SEL_UART1_TXD       0x00000002
+#define IOC_PXX_SEL_SSI0_TXD        0x00000003
+#define IOC_PXX_SEL_SSI0_CLKOUT     0x00000004
+#define IOC_PXX_SEL_SSI0_FSSOUT     0x00000005
+#define IOC_PXX_SEL_SSI0_STXSER_EN  0x00000006
+#define IOC_PXX_SEL_SSI1_TXD        0x00000007
+#define IOC_PXX_SEL_SSI1_CLKOUT     0x00000008
+#define IOC_PXX_SEL_SSI1_FSSOUT     0x00000009
+#define IOC_PXX_SEL_SSI1_STXSER_EN  0x0000000A
+#define IOC_PXX_SEL_I2C_CMSSDA      0x0000000B
+#define IOC_PXX_SEL_I2C_CMSSCL      0x0000000C
+#define IOC_PXX_SEL_GPT0_ICP1       0x0000000D
+#define IOC_PXX_SEL_GPT0_ICP2       0x0000000E
+#define IOC_PXX_SEL_GPT1_ICP1       0x0000000F
+#define IOC_PXX_SEL_GPT1_ICP2       0x00000010
+#define IOC_PXX_SEL_GPT2_ICP1       0x00000011
+#define IOC_PXX_SEL_GPT2_ICP2       0x00000012
+#define IOC_PXX_SEL_GPT3_ICP1       0x00000013
+#define IOC_PXX_SEL_GPT3_ICP2       0x00000014
 
-#define SYS_CTRL_ADDR 	0x400D2000
+/** \name Values for IOC_PXX_OVER
+ * @{
+ */
+#define IOC_OVERRIDE_OE   0x00000008    /**< Output Enable */
+#define IOC_OVERRIDE_PUE  0x00000004    /**< Pull Up Enable */
+#define IOC_OVERRIDE_PDE  0x00000002    /**< Pull Down Enable */
+#define IOC_OVERRIDE_ANA  0x00000001    /**< Analog Enable */
+#define IOC_OVERRIDE_DIS  0x00000000    /**< Override Disabled */
+/** @} */
 
 #ifndef _ASMLANGUAGE
 
@@ -246,10 +278,17 @@
 
 #include "soc_registers.h"
 
-
-
 /* SC Register struct */
 #define __SC		((volatile struct __sc *)SYS_CTRL_ADDR)
+
+/* IOC Register struct */
+#define __IOC 		((volatile struct __ioc *)IOC_ADDR)
+
+/* GPIO Register struct */
+#define __GPIOA 	((volatile struct __gpio *)GPIO_A_ADDR)
+#define __GPIOB		((volatile struct __gpio *)GPIO_B_ADDR)
+#define __GPIOC		((volatile struct __gpio *)GPIO_C_ADDR)
+#define __GPIOD		((volatile struct __gpio *)GPIO_D_ADDR)
 
 #endif /* !_ASMLANGUAGE */
 

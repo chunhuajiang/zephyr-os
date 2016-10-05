@@ -1,0 +1,105 @@
+menuconfig UART_CC2538
+	bool "CC2538 serial driver"
+	default n
+	select SERIAL_HAS_DRIVER
+	help
+	This option enables the CC2538 serial driver.
+	This specific driver can be used for the serial hardware
+	available at the Freescale FRDM K64F platform.
+
+# ---------- Port 0 ----------
+
+menuconfig UART_CC2538_PORT_0
+	bool "Enable CC2538 UART Port 0"
+	default y
+	depends on UART_CC2538
+	help
+	  This tells the driver to configure the UART port at boot, depending on
+	  the additional configure options below.
+
+config UART_CC2538_PORT_0_NAME
+	string "Port 0 Device Name"
+	default "UART_0"
+	depends on UART_CC2538_PORT_0
+	help
+	  This is the device name for UART, and is included in the device
+	  struct.
+
+config UART_CC2538_PORT_0_IRQ_PRI
+	int "Port 0 Interrupt Priority (Interrupt support)"
+	range 0 7
+	default 0
+	depends on UART_CC2538_PORT_0
+	depends on UART_INTERRUPT_DRIVEN
+	help
+	  The interrupt priority for UART port.
+
+config UART_CC2538_PORT_0_BAUD_RATE
+	int "Port 0 Baud Rate"
+	range 1200 1000000
+	default 115200
+	depends on UART_CC2538_PORT_0
+	help
+	  The baud rate for UART port to be set to at boot.
+
+
+config UART_NRF5_GPIO_TX_PIN
+	int "TX Pin Number"
+	range 0 31
+	default 6
+	depends on UART_NRF5
+	depends on GPIO_NRF5
+	help
+	  The GPIO pin to use for TX.
+
+config UART_NRF5_GPIO_RX_PIN
+	int "RX Pin Number"
+	range 0 31
+	default 8
+	depends on UART_NRF5
+	depends on GPIO_NRF5
+	help
+	  The GPIO pin to use for RX.
+# ---------- Port 1 ----------
+
+menuconfig UART_CC2538_PORT_1
+	bool "Enable CC2538 UART Port 1"
+	default n
+	depends on UART_CC2538
+	help
+	  This tells the driver to configure the UART port at boot, depending on
+	  the additional configure options below.
+
+config UART_CC2538_PORT_1_NAME
+	string "Port 1 Device Name"
+	default "UART_1"
+	depends on UART_CC2538_PORT_1
+	help
+	  This is the device name for UART, and is included in the device
+	  struct.
+
+config UART_CC2538_PORT_1_IRQ_PRI
+	int "Port 1 Interrupt Priority"
+	default 0
+	depends on UART_CC2538_PORT_1
+	help
+	  The interrupt priority for UART port.
+
+config UART_CC2538_PORT_1_BAUD_RATE
+	int "Port 1 Baud Rate"
+	default 0
+	depends on UART_CC2538_PORT_1
+	help
+	  The baud rate for UART port to be set to at boot.
+
+	  Leave at 0 to skip initialization.
+
+config UART_NRF5_FLOW_CONTROL
+	bool "Enable Flow Control"
+	default n
+	depends on UART_NRF5
+	help
+	  Enable Flow Control.
+	  If selected, additionally two pins,
+	  RTS and CTS has to be
+	  configured.

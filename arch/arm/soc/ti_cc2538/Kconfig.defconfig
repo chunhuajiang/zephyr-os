@@ -25,13 +25,9 @@ config NUM_IRQ_PRIO_BITS
 	int
 	default 3
 
-#
-# SAM3X8E has total 45 peripherals capable of
-# generating interrupts.
-#
 config NUM_IRQS
 	int
-	default 45
+	default 147
 
 config SYS_CLOCK_HW_CYCLES_PER_SEC
 	int
@@ -48,41 +44,5 @@ config FLASH_SIZE
 
 config FLASH_BASE_ADDRESS
 	default 0x00200000
-
-if USOC_TI_CC2538
-
-config USOC_TI_CC2538_BAUD_RATE
-	int
-	default 115200
-
-config USOC_TI_CC2538_CLK_FREQ
-	int
-	default 84000000
-
-endif # USOC_TI_CC2538
-
-if GPIO
-
-config GSOC_TI_CC2538
-	bool
-	default y
-
-config GSOC_TI_CC2538_PORTA
-	bool
-	default y
-
-config GSOC_TI_CC2538_PORTB
-	bool
-	default y
-
-config GSOC_TI_CC2538_PORTC
-	bool
-	default y
-
-config GSOC_TI_CC2538_PORTD
-	bool
-	default y
-
-endif # GPIO
 
 endif # SOC_TI_CC2538
